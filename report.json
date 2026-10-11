@@ -1,0 +1,482 @@
+{
+  "generated_at_eat": "2026-10-11T08:34:44.911569+03:00",
+  "account_region": null,
+  "ec2": {
+    "total_instances": 0,
+    "by_state": {},
+    "instances": []
+  },
+  "costs": {
+    "period_start": "2026-10-01",
+    "period_end_exclusive": "2026-10-12",
+    "currency": "USD",
+    "daily_costs": [
+      {
+        "date": "2026-10-01",
+        "total": 0.0,
+        "services": [
+          {
+            "service": "AWS Data Transfer",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Glue",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Key Management Service",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Lambda",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon DynamoDB",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon Simple Storage Service",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AmazonCloudWatch",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Tax",
+            "amount": 0.0,
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-02",
+        "total": 0.0,
+        "services": [
+          {
+            "service": "AWS Data Transfer",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Glue",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Key Management Service",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Lambda",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon CloudFront",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon DynamoDB",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon Simple Storage Service",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AmazonCloudWatch",
+            "amount": 0.0,
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-03",
+        "total": 0.0,
+        "services": [
+          {
+            "service": "AWS Data Transfer",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Glue",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Key Management Service",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Lambda",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon DynamoDB",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon Simple Storage Service",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AmazonCloudWatch",
+            "amount": 0.0,
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-04",
+        "total": 0.0,
+        "services": [
+          {
+            "service": "AWS Cost Explorer",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Data Transfer",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Glue",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Key Management Service",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Lambda",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon DynamoDB",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon Simple Storage Service",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AmazonCloudWatch",
+            "amount": 0.0,
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "total": 0.0,
+        "services": [
+          {
+            "service": "AWS Data Transfer",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Glue",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Key Management Service",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Lambda",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon DynamoDB",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon Simple Storage Service",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AmazonCloudWatch",
+            "amount": 0.0,
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-06",
+        "total": 0.0,
+        "services": [
+          {
+            "service": "AWS Data Transfer",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Glue",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Key Management Service",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Lambda",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon CloudFront",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon DynamoDB",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon Simple Storage Service",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AmazonCloudWatch",
+            "amount": 0.0,
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-07",
+        "total": 0.0,
+        "services": [
+          {
+            "service": "AWS Data Transfer",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Glue",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Key Management Service",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Lambda",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon DynamoDB",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon Simple Storage Service",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AmazonCloudWatch",
+            "amount": 0.0,
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-08",
+        "total": 0.0,
+        "services": [
+          {
+            "service": "AWS Data Transfer",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Glue",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Key Management Service",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Lambda",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon DynamoDB",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon Simple Storage Service",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AmazonCloudWatch",
+            "amount": 0.0,
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-09",
+        "total": 0.0,
+        "services": [
+          {
+            "service": "AWS Data Transfer",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Glue",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Key Management Service",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Lambda",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon DynamoDB",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon Simple Storage Service",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AmazonCloudWatch",
+            "amount": 0.0,
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-10",
+        "total": 0.0,
+        "services": [
+          {
+            "service": "AWS CloudShell",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Cost Explorer",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Data Transfer",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Glue",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Key Management Service",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Lambda",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AWS Secrets Manager",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon CloudFront",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon DynamoDB",
+            "amount": -0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon Simple Notification Service",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon Simple Queue Service",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "Amazon Simple Storage Service",
+            "amount": 0.0,
+            "unit": "USD"
+          },
+          {
+            "service": "AmazonCloudWatch",
+            "amount": 0.0,
+            "unit": "USD"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-11",
+        "total": 0,
+        "services": []
+      }
+    ],
+    "month_to_date": 0.0
+  }
+}
