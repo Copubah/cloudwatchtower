@@ -5,6 +5,7 @@ from html import escape
 
 
 def table(headers, rows):
+    """Render an HTML table, including a fallback for empty results."""
     header_html = "".join(
         f"<th>{escape(str(header))}</th>" for header in headers
     )
@@ -26,6 +27,8 @@ def table(headers, rows):
 
 
 def render_html_report(report):
+    """Render combined inventory and cost data as an HTML report."""
+
     def cell(value):
         if value is None or value == "":
             value = "N/A"
@@ -42,73 +45,60 @@ def render_html_report(report):
         try:
             return f"{float(value):,.2f}"
         except (TypeError, ValueError):
-            return "0.00"
+            return "N/A"
 
-    costs = report.get("costs", {})
-    ec2 = report.get("ec2", {})
-    rds = report.get("rds", {})
-    s3 = report.get("s3", {})
-    lambda_data = report.get("lambda", {})
-    ebs = report.get("ebs", {})
-    ecs = report.get("ecs", {})
-    load_balancers = report.get("load_balancers", {})
-    nat_gateways = report.get("nat_gateways", {})
-    elastic_ips = report.get("elastic_ips", {})
+    costs = report.get("costs") or {}
+    ec2 = report.get("ec2") or {}
+    rds = report.get("rds") or {}
+    s3 = report.get("s3") or {}
+    lambda_data = report.get("lambda") or {}
+    ebs = report.get("ebs") or {}
+    ecs = report.get("ecs") or {}
+    load_balancers = report.get("load_balancers") or {}
+    nat_gateways = report.get("nat_gateways") or {}
+    elastic_ips = report.get("elastic_ips") or {}
 
-    # Cost summary
-    mtd = costs.get("month_to_date", {})
-    daily_costs = costs.get("daily_costs", {})
-
-    if not isinstance(daily_costs, dict):
-        daily_costs = {}
-
-    if isinstance(mtd, dict):
-        currency = mtd.get(
-            "currency", daily_costs.get("currency", "USD")
-        )
-        mtd_total = mtd.get("total", 0)
-    elif isinstance(mtd, (int, float)):
-        currency = daily_costs.get("currency", "USD")
-        mtd_total = mtd
-    else:
-        currency = daily_costs.get("currency", "USD")
-        mtd_total = 0
-
+    # Cost Explorer: daily_costs is a list of daily records.
+    currency = costs.get("currency", "USD")
+    mtd_total = costs.get("month_to_date", 0)
     period_start = costs.get("period_start", "N/A")
     period_end = costs.get("period_end_exclusive", "N/A")
+    daily_cost_data = costs.get("daily_costs", [])
 
     daily_rows = []
-    by_day = daily_costs.get("by_day", {})
+    service_rows = []
 
-    if isinstance(by_day, dict):
-        for day, details in by_day.items():
-            if not isinstance(details, dict):
+    if isinstance(daily_cost_data, list):
+        for day in daily_cost_data:
+            if not isinstance(day, dict):
                 continue
+
+            day_date = day.get("date", "N/A")
+            day_currency = day.get("currency", currency)
+            day_total = day.get("total", 0)
 
             daily_rows.append(
                 "<tr>"
-                + cell(day)
-                + cell(money(details.get("total", 0)))
-                + cell(details.get("currency", currency))
+                + cell(day_date)
+                + cell(money(day_total))
+                + cell(day_currency)
                 + "</tr>"
             )
 
-    service_rows = []
-    if isinstance(by_day, dict):
-        for day, details in by_day.items():
-            if not isinstance(details, dict):
+            services = day.get("services", [])
+            if not isinstance(services, list):
                 continue
 
-            services = details.get("services", {})
-            if not isinstance(services, dict):
-                continue
+            for service in services:
+                if not isinstance(service, dict):
+                    continue
 
-            for service, amount in services.items():
                 service_rows.append(
                     "<tr>"
-                    + cell(day)
-                    + cell(service)
-                    + cell(money(amount))
+                    + cell(day_date)
+                    + cell(service.get("service"))
+                    + cell(money(service.get("amount")))
+                    + cell(service.get("unit", currency))
                     + "</tr>"
                 )
 
@@ -143,40 +133,32 @@ def render_html_report(report):
             + "</tr>"
         )
 
-    # S3 buckets
+    # S3 buckets: names, versioning, and encryption are strings.
     s3_rows = []
     for item in s3.get("items", []):
-        versioning = item.get("versioning", {})
-        if not isinstance(versioning, dict):
-            versioning = {}
-
-        encryption_status = (
-            "Enabled"
-            if item.get("encryption")
-            else (
-                "Unknown"
-                if item.get("encryption_error")
-                else "Not detected"
-            )
-        )
-
         s3_rows.append(
             "<tr>"
-            + cell(item.get("bucket_name"))
+            + cell(item.get("name"))
             + cell(item.get("region"))
-            + cell(versioning.get("Status", "Unknown"))
-            + cell(encryption_status)
+            + cell(item.get("versioning", "Unknown"))
+            + cell(item.get("encryption", "Unknown"))
             + "</tr>"
         )
 
     # Lambda functions
     lambda_rows = []
     for item in lambda_data.get("items", []):
+        state = (
+            item.get("state")
+            or item.get("last_update_status")
+            or "Unknown"
+        )
+
         lambda_rows.append(
             "<tr>"
             + cell(item.get("function_name"))
             + cell(item.get("runtime"))
-            + cell(item.get("state"))
+            + cell(state)
             + cell(item.get("memory_mb"))
             + cell(item.get("timeout_seconds"))
             + cell(item.get("region"))
@@ -302,6 +284,15 @@ def render_html_report(report):
         tags = item.get("tags", {})
         if isinstance(tags, dict):
             name = tags.get("Name", "Unnamed")
+        elif isinstance(tags, list):
+            name = next(
+                (
+                    tag.get("Value")
+                    for tag in tags
+                    if tag.get("Key") == "Name"
+                ),
+                "Unnamed",
+            )
         else:
             name = "Unnamed"
 
@@ -325,7 +316,8 @@ def render_html_report(report):
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0">
         <title>CloudWatchtower Daily AWS Report</title>
         <style>
             body {{
@@ -375,7 +367,7 @@ def render_html_report(report):
         {table(["Date", "Total Cost", "Currency"], daily_rows)}
 
         <h2>Cost by Service</h2>
-        {table(["Date", "Service", "Cost"], service_rows)}
+        {table(["Date", "Service", "Cost", "Currency"], service_rows)}
 
         <h2>EC2 Instances</h2>
         <p>Total: {escape(str(ec2.get("total", 0)))}</p>

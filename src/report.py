@@ -13,6 +13,7 @@ from src.collectors.ecs import collect_ecs_inventory
 from src.collectors.elb import collect_load_balancers
 from src.collectors.nat_gateway import collect_nat_gateways
 from src.collectors.elastic_ips import collect_elastic_ips
+from src.collectors.vpc import collect_vpc_inventory
 from src.cost.cost_explorer import collect_costs
 
 
@@ -36,6 +37,7 @@ def generate_report(region=None):
     load_balancers = collect_load_balancers(region=region)
     nat_gateways = collect_nat_gateways(region=region)
     elastic_ips = collect_elastic_ips(region=region)
+    vpc_inventory = collect_vpc_inventory(region=region)
     costs = collect_costs()
 
     ec2_state_counts = count_by(ec2_instances, "state")
@@ -44,9 +46,7 @@ def generate_report(region=None):
     ebs_state_counts = count_by(ebs_volumes, "state")
     elb_type_counts = count_by(load_balancers, "type")
     nat_state_counts = count_by(nat_gateways, "state")
-    nat_connectivity_counts = count_by(
-        nat_gateways, "connectivity_type"
-    )
+    nat_connectivity_counts = count_by(nat_gateways, "connectivity_type")
 
     unattached_ebs_count = sum(
         1 for volume in ebs_volumes
@@ -126,6 +126,21 @@ def generate_report(region=None):
             "unassociated_count": elastic_ips["unassociated_count"],
             "failed_count": elastic_ips["failed_count"],
             "items": elastic_ips["items"],
+        },
+        "vpc": {
+            "total": vpc_inventory["vpc_count"],
+            "subnet_count": vpc_inventory["subnet_count"],
+            "route_table_count": vpc_inventory["route_table_count"],
+            "internet_gateway_count": vpc_inventory[
+                "internet_gateway_count"
+            ],
+            "detached_internet_gateway_count": vpc_inventory[
+                "detached_internet_gateway_count"
+            ],
+            "items": vpc_inventory["vpcs"],
+            "subnets": vpc_inventory["subnets"],
+            "route_tables": vpc_inventory["route_tables"],
+            "internet_gateways": vpc_inventory["internet_gateways"],
         },
         "costs": costs,
     }
